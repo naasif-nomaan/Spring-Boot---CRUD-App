@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+<title>Spring Boot-CRUD</title>
+</head>
+<body>
+<div class="container" >
+<br/>
+<br/>
+<h3>CRUD App Home</h3>
+<br/>
+<br/>
+<p th:text="'Time on server:  '+${date}  "   /> 
+
+<hr>
+<a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3">Add Employee</a>
+
+<br/>
+<br/>
+
+
+<table class="table table-bordered table-striped">
+<thead class="table-dark">
+<tr >   
+<th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+<th>Department</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>   
+<tr th:each="tempemployee:${employees}" > 
+<td th:text=${tempemployee.firstName}/>
+<td th:text=${tempemployee.lastName}/>
+<td th:text=${tempemployee.email}/>
+<td th:text=${tempemployee.department.departName}/>
+<td> <a th:href="@{/update(employeeId=${tempemployee.id})}" class="btn btn-success btn-sm mb-3">Update</a>
+
+<a th:href="@{/delete(employeeId=${tempemployee.id})}" class="btn btn-danger btn-sm mb-3">Delete</a>
+ </td>
+</tr>
+
+</tbody>
+
+
+</table>
+</div>
+
+</body>
+</html>
